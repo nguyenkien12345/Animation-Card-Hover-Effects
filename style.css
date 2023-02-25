@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #d9d9d9;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 
+box-shadow: x y blur spread color 
+blur: Điều chỉnh độ mờ của shadow
+spread: Điều chỉnh độ phân tán của shadow
+*/
+.card {
+    height: 390px;
+    width: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 70px 63px -60px #000;
+    position: relative;
+    transition: 0.8s linear all;
+    margin: 0px 15px;
+}
+
+.card .card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Vì thẻ cha là card đã transition là 0.8s nên thẻ con phải lớn hơn là 1s */
+    transition: 1s all linear;
+    filter: grayscale(1);
+}
+
+.card .card-image:hover {
+    width: 130%;
+    filter: grayscale(0);
+}
+
+.card:hover {
+    /* Thẻ card sẽ chuyển động theo chiều y lên 30px */
+    transform: translateY(-30px);
+    box-shadow: 0px 90px 63px -20px #000;
+}
+
+.card-content {
+    /* Với bottom: 0, left: 0 => Không nên dùng height: 100% */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 10px 0px;
+    transition: 0.8s all linear;
+    backdrop-filter: blur(10px);
+    /* Mới vào giấu thẻ card-content đi */
+    /* Dịch thẻ card-content xuống dưới */
+    transform: translateY(67%);
+    backdrop-filter: blur(0);
+}
+
+/* Khi card được hover thì card-content sẽ được áp dụng */
+.card:hover .card-content {
+    /* Trả thẻ card-content về vị trí chỉ định */
+    transform: translateY(10%);
+    backdrop-filter: blur(5px);
+}
+
+.card-content .card-name {
+    margin: 0px;
+    font-weight: bolder;
+}
+
+.card-content .card-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card-info .card-item {
+    border-right: 1px solid #fff5;
+}
+
+.card-info .card-item:nth-last-child(1) {
+    border-right: 0px;
+}
+
+.card-item .card-title {
+    font-size: large;
+    margin: 10px 0px;
+}
+
+.card-item .card-desc {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 428px){
+    body {
+        height: 100%;
+    }
+
+    .container {
+        margin-top: 30px;
+        flex-direction: column;
+    }
+
+    .card {
+        margin: 30px 0px;
+        height: 100vh;
+    }
+
+}
